@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Question</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffe6e6;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            touch-action: manipulation;
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            width: 85%;
+            max-width: 450px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff4757;
+            z-index: 10;
+        }
+
+        h1 {
+            color: #ff4757;
+            margin: 10px 0;
+            font-size: 1.8rem;
+        }
+
+        #cute-msg {
+            color: #ff6b81;
+            font-size: 1.1rem;
+            min-height: 50px;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            min-height: 150px;
+            position: relative;
+        }
+
+        button {
+            width: 130px;
+            height: 55px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #yesBtn {
+            background-color: #ff4757;
+            color: white;
+            z-index: 5;
+        }
+
+        #noBtn {
+            background-color: #000000;
+            color: #ff4757; 
+            border: 2px solid #ff4757;
+            z-index: 999;
+            white-space: nowrap;
+        }
+
+        .heart-icon {
+            font-size: 50px;
+            animation: beat 0.8s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
+        }
+
+        /* Styling for the emotional message */
+        .emotional-text {
+            color: #ff4757;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: center;
+            animation: fadeIn 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainContainer">
+        <div class="heart-icon">❤️</div>
+        <h1>Will you be my Valentine?</h1>
+        <div id="cute-msg">Try to click No... if you can! 😉</div>
+        
+        <div class="buttons" id="buttonArea">
+            <button id="yesBtn" onclick="showLove()">Yes</button>
+            <button id="noBtn">No</button>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const cuteMsg = document.getElementById('cute-msg');
+
+        const phrases = [
+            "Wait, did you misclick? 🤭",
+            "But I bought your favorite snacks! 🍫",
+            "I'll give you a million hugs! 🤗",
+            "I promise to never steal your fries! 🍟",
+            "Don't be a meanie! 😿",
+            "Error 404: 'No' not found 🚫",
+            "I'll make you coffee every morning! ☕"
+        ];
+
+        let count = 0;
+        let shrinkCount = 0; 
+        let noScale = 1;
+
+        function moveButton(e) {
+            e.preventDefault(); 
+
+            // Move the button randomly
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${x}px`;
+            noBtn.style.top = `${y}px`;
+
+            // Change the cute sub-message
+            cuteMsg.innerText = phrases[count % phrases.length];
+            count++;
+
+            // Shrink NO ONLY 5 times (Yes stays original size)
+            if (shrinkCount < 5) {
+                noScale -= 0.1;
+                shrinkCount++;
+                noBtn.style.transform = `scale(${noScale})`;
+            }
+        }
+
+        noBtn.addEventListener('touchstart', moveButton);
+        noBtn.addEventListener('mouseover', moveButton);
+
+        function showLove() {
+            document.getElementById('mainContainer').innerHTML = `
+                <div class="heart-icon">💖</div>
+                <h1>My Heart is Yours! ❤️</h1>
+                <div class="emotional-text">
+                    <p>I honestly don't have enough words to tell you how much you mean to me. Every moment we spend together feels like a beautiful dream that I never want to wake up from.</p>
+                    <p>Thank you for being my person, my best friend, and now... my Valentine. You make my world so much brighter just by being in it. I promise to cherish you, laugh with you, and love you more and more every single day. 🌸</p>
+                    <p><b>Forever & Always!</b></p>
+                </div>
+            `;
+            document.body.style.backgroundColor = '#ffccd2';
+            startHeartRain();
+        }
+
+        function startHeartRain() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                const icons = ['❤️', '💖', '✨', '🌹'];
+                heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-20px';
+                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+                document.body.appendChild(heart);
+
+                const anim = heart.animate([
+                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 50}px) rotate(360deg)`, opacity: 0 }
+                ], { duration: 3000 });
+
+                anim.onfinish = () => heart.remove();
+            }, 150);
+        }
+    </script>
+</body>
+</html>
