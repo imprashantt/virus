@@ -3,197 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Special Question</title>
+    <title>For Smita ❤️</title>
     <style>
+        :root {
+            --bg-dark: #1a0a1f;
+            --heart-red: #ff3366;
+            --gold: #ffd700;
+            --white: #ffffff;
+        }
+
         body {
-            margin: 0;
-            height: 100vh;
+            background: radial-gradient(circle, #2c0735, #1a0a1f);
+            color: var(--white);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ffe6e6;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            margin: 0;
             overflow: hidden;
-            touch-action: manipulation;
+        }
+
+        /* Large Floating Elements */
+        .floating-emoji {
+            position: absolute;
+            bottom: -100px;
+            animation: floatUp 8s infinite linear;
+            z-index: 1;
+            filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.5));
+            user-select: none;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
         }
 
         .container {
-            text-align: center;
-            background: white;
-            padding: 2rem;
-            width: 85%;
-            max-width: 450px;
-            border-radius: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 3px solid #ff4757;
-            z-index: 10;
-        }
-
-        h1 {
-            color: #ff4757;
-            margin: 10px 0;
-            font-size: 1.8rem;
-        }
-
-        #cute-msg {
-            color: #ff6b81;
-            font-size: 1.1rem;
-            min-height: 50px;
-            font-style: italic;
-            margin-bottom: 10px;
-        }
-
-        .buttons {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            min-height: 150px;
             position: relative;
+            z-index: 10;
+            text-align: center;
+            background: rgba(40, 20, 50, 0.85);
+            padding: 40px;
+            border-radius: 30px;
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+            max-width: 500px;
+            width: 85%;
+            border: 2px solid var(--heart-red);
         }
 
-        button {
+        h1 { color: var(--gold); margin-bottom: 20px; font-size: 1.8rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); }
+        p { line-height: 1.6; font-size: 1.1rem; margin-bottom: 30px; }
+
+        /* Heart-Shaped Buttons */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .heart-btn {
             width: 130px;
-            height: 55px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: transform 0.2s ease;
+            height: 120px;
+            background-color: var(--heart-red);
             display: flex;
             justify-content: center;
             align-items: center;
-        }
-
-        #yesBtn {
-            background-color: #ff4757;
             color: white;
-            z-index: 5;
-        }
-
-        #noBtn {
-            background-color: #000000;
-            color: #ff4757; 
-            border: 2px solid #ff4757;
-            z-index: 999;
-            white-space: nowrap;
-        }
-
-        .heart-icon {
-            font-size: 50px;
-            animation: beat 0.8s infinite;
-        }
-
-        @keyframes beat {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.15); }
-        }
-
-        /* Styling for the emotional message */
-        .emotional-text {
-            color: #ff4757;
-            font-size: 1.1rem;
-            line-height: 1.6;
+            font-weight: bold;
+            font-size: 0.95rem;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.3s, background 0.3s;
             text-align: center;
-            animation: fadeIn 2s ease;
+            padding: 10px;
+            /* The CSS Heart Shape */
+            clip-path: path('M65,32.5 C65,0 0,0 0,32.5 C0,65 65,119 65,119 C65,119 130,65 130,32.5 C130,0 65,0 65,32.5 Z');
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .heart-btn:hover {
+            transform: scale(1.15);
+            background-color: #ff0044;
+            filter: brightness(1.2);
+        }
+
+        .final-text {
+            font-size: 1.1rem;
+            white-space: pre-line;
+            color: var(--white);
+            font-style: italic;
+            padding: 15px;
+            max-height: 50vh;
+            overflow-y: auto;
+        }
+
+        /* Bottom Right Footer */
+        .footer-credit {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-family: 'Brush Script MT', cursive;
+            color: var(--gold);
+            font-size: 1.4rem;
+            text-shadow: 1px 1px 2px black;
+            z-index: 20;
         }
     </style>
 </head>
 <body>
 
-    <div class="container" id="mainContainer">
-        <div class="heart-icon">❤️</div>
-        <h1>Will you be my Valentine?</h1>
-        <div id="cute-msg">Try to click No... if you can! 😉</div>
+    <script>
+        const emojis = ['❤️', '🌹', '✨', '💖', '💍', '🌸', '💫', '🧸'];
+        function createEmoji() {
+            const e = document.createElement('div');
+            e.className = 'floating-emoji';
+            e.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            e.style.left = Math.random() * 100 + 'vw';
+            e.style.fontSize = (Math.random() * 30 + 40) + 'px'; // Large sizes
+            e.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            document.body.appendChild(e);
+            
+            setTimeout(() => { e.remove(); }, 8000);
+        }
+        setInterval(createEmoji, 400);
+    </script>
+
+    <div class="footer-credit">
+        From Prashant >>>>> to Smita
+    </div>
+
+    <div class="container" id="main-box">
+        <h1 id="title">Hey Smita...</h1>
+        <p id="desc">I've been holding something in my heart for a long time. Will you listen?</p>
         
-        <div class="buttons" id="buttonArea">
-            <button id="yesBtn" onclick="showLove()">Yes</button>
-            <button id="noBtn">No</button>
+        <div class="btn-container" id="actions">
+            <button class="heart-btn" onclick="stepTwo()">Yes</button>
+            <button class="heart-btn" onclick="stepTwo()">Definitely Yes!</button>
         </div>
     </div>
 
     <script>
-        const noBtn = document.getElementById('noBtn');
-        const cuteMsg = document.getElementById('cute-msg');
-
-        const phrases = [
-            "Wait, did you misclick? 🤭",
-            "But I bought your favorite snacks! 🍫",
-            "I'll give you a million hugs! 🤗",
-            "I promise to never steal your fries! 🍟",
-            "Don't be a meanie! 😿",
-            "Error 404: 'No' not found 🚫",
-            "I'll make you coffee every morning! ☕"
-        ];
-
-        let count = 0;
-        let shrinkCount = 0; 
-        let noScale = 1;
-
-        function moveButton(e) {
-            e.preventDefault(); 
-
-            // Move the button randomly
-            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
-            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = `${x}px`;
-            noBtn.style.top = `${y}px`;
-
-            // Change the cute sub-message
-            cuteMsg.innerText = phrases[count % phrases.length];
-            count++;
-
-            // Shrink NO ONLY 5 times (Yes stays original size)
-            if (shrinkCount < 5) {
-                noScale -= 0.1;
-                shrinkCount++;
-                noBtn.style.transform = `scale(${noScale})`;
-            }
+        function stepTwo() {
+            document.getElementById('title').innerText = "Pick Your Tone";
+            document.getElementById('desc').innerText = "How should I say what I feel, Smita?";
+            document.getElementById('actions').innerHTML = `
+                <button class="heart-btn" onclick="showFinal('shayari')">Shayari</button>
+                <button class="heart-btn" onclick="showFinal('english')">English</button>
+                <button class="heart-btn" onclick="showFinal('hindi')">Hindi</button>
+            `;
         }
 
-        noBtn.addEventListener('touchstart', moveButton);
-        noBtn.addEventListener('mouseover', moveButton);
+        function showFinal(tone) {
+            const box = document.getElementById('main-box');
+            let title = "";
+            let msg = "";
 
-        function showLove() {
-            document.getElementById('mainContainer').innerHTML = `
-                <div class="heart-icon">💖</div>
-                <h1>My Heart is Yours! ❤️</h1>
-                <div class="emotional-text">
-                    <p>I honestly don't have enough words to tell you how much you mean to me. Every moment we spend together feels like a beautiful dream that I never want to wake up from.</p>
-                    <p>Thank you for being my person, my best friend, and now... my Valentine. You make my world so much brighter just by being in it. I promise to cherish you, laugh with you, and love you more and more every single day. 🌸</p>
-                    <p><b>Forever & Always!</b></p>
+            if(tone === 'shayari') {
+                title = "Arz Kiya Hai...";
+                msg = `तुम जितना तो कोई मुझको ख़ास नहीं,
+                       लेकिन फिर भी क्यों तुमको विश्वास नहीं,
+
+                       मुझसे बेहतर लड़का तो मिल जाएगा
+                       लेकिन मेरी माँ से बेहतर सास नहीं।`;
+            } else if(tone === 'english') {
+                title = "To My Dearest Bubu";
+                msg = `"My dearest bubu, from the moment I met you, I knew that you were someone special. Your smile brightens up my day, your laughter is music to my ears, and your love is the air I breathe. You're more than just a partner, you're my best friend, my confidante, and my soulmate. I can't imagine a future without you by my side. You make my life richer, fuller, and more meaningful. I want to spend the rest of my life making you happy, supporting your dreams, and exploring the world together. 
+
+                Will you be mine forever? 💕🌟
+
+                Yours Prashant ❤️"`;
+            } else if(tone === 'hindi') {
+                title = "Mere Dil Ki Baat";
+                msg = `सच कहूँ तो मुझे नहीं पता था कि मैं किसी को इस हद तक चाह सकता हूँ। जब तुम साथ होती हो, तो सब कुछ बेहतर लगने लगता है। मैं सिर्फ आज के लिए नहीं, बल्कि अपनी पूरी ज़िंदगी तुम्हारे साथ बिताना चाहता हूँ। क्या तुम मेरा हाथ थामकर हमेशा के लिए मेरी हमसफ़र बनोगी?`;
+            }
+
+            box.innerHTML = `
+                <h1 style="color: var(--gold)">${title}</h1>
+                <p class="final-text">${msg}</p>
+                <div class="btn-container">
+                    <button class="heart-btn" onclick="location.reload()">Re-play Love</button>
                 </div>
             `;
-            document.body.style.backgroundColor = '#ffccd2';
-            startHeartRain();
-        }
-
-        function startHeartRain() {
-            setInterval(() => {
-                const heart = document.createElement('div');
-                const icons = ['❤️', '💖', '✨', '🌹'];
-                heart.innerHTML = icons[Math.floor(Math.random() * icons.length)];
-                heart.style.position = 'fixed';
-                heart.style.left = Math.random() * 100 + 'vw';
-                heart.style.top = '-20px';
-                heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-                document.body.appendChild(heart);
-
-                const anim = heart.animate([
-                    { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
-                    { transform: `translateY(${window.innerHeight + 50}px) rotate(360deg)`, opacity: 0 }
-                ], { duration: 3000 });
-
-                anim.onfinish = () => heart.remove();
-            }, 150);
         }
     </script>
 </body>
